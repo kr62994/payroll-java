@@ -5,7 +5,7 @@ public class PayrollCalculator {
     private static final double OVERTIME_MULTIPLIER = 1.5;
     private static final int REGULAR_HOURS_LIMIT = 40;
 
-    public static final double UNION_DUES = 10.00;
+    public static final double UNION_DUES = 10.00; // prob should be getter
     private static final double SOCIAL_SECURITY_RATE = 0.06;
     private static final double FEDERAL_INCOME_TAX_RATE = 0.14;
     private static final double STATE_INCOME_TAX_RATE = 0.05;
