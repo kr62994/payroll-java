@@ -1,6 +1,6 @@
 package org.example;
 
-public final class PayrollCalculator {
+public class PayrollCalculator {
     public static final double HOURLY_RATE = 16.78;
     private static final double OVERTIME_MULTIPLIER = 1.5;
     private static final int REGULAR_HOURS_LIMIT = 40;
@@ -15,38 +15,38 @@ public final class PayrollCalculator {
     private static final int LARGE_FAMILY_SIZE = 3;
 
 
-    public static double calculateRegularPay(double hoursWorked) {
+    public double calculateRegularPay(double hoursWorked) {
         notNegative(hoursWorked, "Hours worked");
         double regularHours = Math.min(hoursWorked, REGULAR_HOURS_LIMIT);
         return regularHours * HOURLY_RATE;
     }
 
-    public static double calculateOvertimePay(double hoursWorked) {
+    public double calculateOvertimePay(double hoursWorked) {
         notNegative(hoursWorked, "Hours worked");
         double overtimeHours = Math.max(hoursWorked - REGULAR_HOURS_LIMIT, 0.0);
         return overtimeHours * HOURLY_RATE * OVERTIME_MULTIPLIER;
     }
 
-    public static double calculateGrossPay(double hoursWorked) {
+    public double calculateGrossPay(double hoursWorked) {
         return calculateRegularPay(hoursWorked) + calculateOvertimePay(hoursWorked);
     }
 
-    public static double calculateSocialSecurityTax(double grossPay) {
+    public double calculateSocialSecurityTax(double grossPay) {
         notNegative(grossPay, "Gross pay");
         return grossPay * SOCIAL_SECURITY_RATE;
     }
 
-    public static double calculateFederalIncomeTax(double grossPay) {
+    public double calculateFederalIncomeTax(double grossPay) {
         notNegative(grossPay, "Gross pay");
         return grossPay * FEDERAL_INCOME_TAX_RATE;
     }
 
-    public static double calculateStateIncomeTax(double grossPay) {
+    public double calculateStateIncomeTax(double grossPay) {
         notNegative(grossPay, "Gross pay");
         return grossPay * STATE_INCOME_TAX_RATE;
     }
 
-    public static double calculateInsuranceCost(int dependents) {
+    public double calculateInsuranceCost(int dependents) {
         notNegative(dependents, "Dependents");
         if (dependents >= LARGE_FAMILY_SIZE) {
             return LARGE_FAMILY_INSURANCE_COST;
@@ -55,7 +55,7 @@ public final class PayrollCalculator {
         }
     }
 
-    public static double calculateTotalDeductions(double grossPay, int dependents) {
+    public double calculateTotalDeductions(double grossPay, int dependents) {
         notNegative(grossPay, "Gross pay");
         notNegative(dependents, "Dependents");
 
@@ -66,11 +66,11 @@ public final class PayrollCalculator {
                 + calculateInsuranceCost(dependents);
     }
 
-    public static double calculateNetPay(double grossPay, int dependents) {
+    public double calculateNetPay(double grossPay, int dependents) {
         return grossPay - calculateTotalDeductions(grossPay, dependents);
     }
 
-    private static void notNegative(double value, String name) {
+    private void notNegative(double value, String name) {
         if (value < 0) {
             throw new IllegalArgumentException(name + " must be a non-negative number.");
         }
